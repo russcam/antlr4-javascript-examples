@@ -1,19 +1,17 @@
 {
   "name": "antlr4-javascript-examples",
   "version": "1.0.0",
-  "description": "An example of an parser generated with ANTLR4.",
+  "description": "An example of a parser generated with ANTLR4.",
   "scripts": {
-    "start": "npm run cymbol",
-    "cymbol": "http-server browser-example",
-    "csv-to-array": "node --harmony --harmony_destructuring csv-to-array.js",
-    "expr": "node --harmony --harmony_destructuring expr.js",
-    "build": "npm run build-cymbol && npm run build-csv && npm run build-expr",
-    "build-cymbol": "antlr4 -Dlanguage=JavaScript browser-example/Cymbol.g4 -o browser-example/parser",
-    "build-csv": "antlr4 -Dlanguage=JavaScript CSV.g4 -o parsers/csv",
-    "build-expr": "antlr4 -Dlanguage=JavaScript Expr.g4 -o parsers/expr",
+    "start": "npm run painless",
+    "painless": "http-server browser-example -c-1",
+    "build": "npm run build-painless-class-tokens && npm run build-painless-lexer && npm run build-painless-parser",
+    "build-painless-class-tokens": "node browser-example/painless-class-token-builder.js",
+    "build-painless-lexer": "java -jar C:\\tools\\antlr\\antlr-4.5.3-complete.jar -Dlanguage=JavaScript browser-example/PainlessLexer.g4 -o browser-example/parser",
+    "build-painless-parser": "java -jar C:\\tools\\antlr\\antlr-4.5.3-complete.jar -Dlanguage=JavaScript browser-example/PainlessParser.g4 -o browser-example/parser",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Michael Maier",
+  "author": "Russ Cam",
   "repository": {
     "type": "git",
     "url": "https://github.com/maiermic/antlr4-javascript-examples"
@@ -23,6 +21,8 @@
     "antlr4": "^4.5.2"
   },
   "devDependencies": {
-    "http-server": "^0.9.0"
+    "http-server": "^0.9.0",
+    "jsonfile": "2.4.0",
+    "linebyline": "1.3.0"
   }
 }

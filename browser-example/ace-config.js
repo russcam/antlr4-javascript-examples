@@ -1,7 +1,7 @@
 ace.config.setModuleUrl(
-  'ace/mode/my-mode', './my-mode.js'
+  'ace/mode/mode-painless', './mode-painless.js'
 );
 ace.config.setModuleUrl(
-  'ace/worker/my-worker',
-  './my-worker.js'
+  'ace/worker/worker-painless',
+  './worker-painless.js'
 );
