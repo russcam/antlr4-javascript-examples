@@ -59,7 +59,8 @@ function writeClassFile() {
                      "var Definition = {" +
                      "    isSimpleType: function(localctx, lexer) {" + 
                      "        return classNames.indexOf(lexer.text) > -1;" +
-                     "    }" +
+                     "    }," +
+                     "    classes: classes" +
                      "};" +
                      "module.exports = Definition;";
 

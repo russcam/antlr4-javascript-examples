@@ -22,11 +22,13 @@ module.exports = {
     'constant.numeric': ['INTEGER', 'DECIMAL', 'HEX', 'OCTAL'],
     'constant.language': ['NULL'],
     'constant.language.boolean': ['TRUE', 'FALSE'],
-    'comment': ['COMMENT'],
+    'comment.line': ['COMMENT'],
+    'comment.block': ['COMMENT'],
     'string.quoted.double': ['STRING'],
     'string.quoted.single': ['STRING'],
     'string.regexp': ['REGEX'],
     'variable.language': ['THIS'],
-    'storage.type': ['TYPE']
+    'storage.type': ['TYPE'],
+    'support.function': ['DOTID']
   }
 };

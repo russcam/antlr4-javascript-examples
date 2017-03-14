@@ -24,7 +24,7 @@ ace.define('ace/worker/worker-painless',["require","exports","module","ace/lib/o
   var antlr4_require = window.require;
   window.require = require = ace_require;
 
-  // load antlr4 and myLanguage
+  // load antlr4 and painless
   var antlr4, PainlessLexer, PainlessParser;
   try {
     window.require = antlr4_require;
@@ -39,6 +39,7 @@ ace.define('ace/worker/worker-painless',["require","exports","module","ace/lib/o
   var AnnotatingErrorListener = function(annotations) {
     antlr4.error.ErrorListener.call(this);
     this.annotations = annotations;
+    this.partialToken = null;
     return this;
   };
 
@@ -52,6 +53,26 @@ ace.define('ace/worker/worker-painless',["require","exports","module","ace/lib/o
       text: msg,
       type: "error"
     });
+
+//// Autocompletion
+    this.partialToken = null;
+    var typeAssistTokens = ["TYPE", "ID", "DOTID"];
+    var parser = recognizer._ctx.parser;
+    var tokens = parser.getTokenStream().tokens;
+
+    // last token is always "fake" EOF token
+    if (tokens.length > 1) {
+        var lastToken = tokens[tokens.length - 2];
+        var tokenType = parser.symbolicNames[lastToken.type];
+
+        this.tokenType = tokenType;
+        //if (typeAssistTokens.indexOf(tokenType) >= 0) {
+            console.log("last token is " + lastToken.text + ". token type is " + tokenType);
+            this.partialToken = lastToken.text;
+        //}
+    }
+////
+
   };
 
   function validate(input) {
